@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Grandpa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sky: #7eb8d4;
+      --sky-deep: #3d7ea6;
+      --sun: #f4c95f;
+      --ink: #1f3a45;
+      --paper: #fffdf8;
+      --button: #e85d4c;
+      --button-hover: #d14a3a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Nunito", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(244, 201, 95, 0.45), transparent 35%),
+        radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.55), transparent 30%),
+        linear-gradient(160deg, #b9dff0 0%, var(--sky) 45%, #f7e7c2 100%);
+      padding: 1.5rem;
+    }
+
+    .card {
+      width: min(100%, 34rem);
+      text-align: center;
+      padding: 2.75rem 2rem;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      border: 1px solid rgba(31, 58, 69, 0.08);
+      border-radius: 1.5rem;
+      box-shadow: 0 18px 40px rgba(31, 58, 69, 0.12);
+      backdrop-filter: blur(6px);
+      animation: rise 0.7s ease both;
+    }
+
+    h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+      margin-bottom: 1.75rem;
+      opacity: 0.9;
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: white;
+      background: var(--button);
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 0 #b63c2f;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover {
+      background: var(--button-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 0 #b63c2f;
+    }
+
+    button:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #b63c2f;
+    }
+
+    .message {
+      margin-top: 1.75rem;
+      min-height: 3.5rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .message span {
+      display: none;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--sky-deep);
+    }
+
+    .message.show span {
+      display: inline-block;
+      animation: pop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>A Special Surprise</h1>
+    <p>Press the button to open Grandpa's birthday message.</p>
+    <button type="button" id="surpriseBtn">Open the Surprise</button>
+    <div class="message" id="message" aria-live="polite">
+      <span>Happy Birthday Grandpa!</span>
+    </div>
+  </main>
+
+  <script>
+    const button = document.getElementById("surpriseBtn");
+    const message = document.getElementById("message");
+
+    button.addEventListener("click", () => {
+      message.classList.add("show");
+      button.textContent = "Surprise Revealed!";
+      button.disabled = true;
+    });
+  </script>
+</body>
+</html>
